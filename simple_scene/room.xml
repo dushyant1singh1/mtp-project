@@ -1,0 +1,85 @@
+<scene version="2.1.0">
+
+<!-- Defaults, these can be set via the command line: -Darg=value -->
+
+	<default name="spp" value="4096"/>
+	<default name="resx" value="1920"/>
+	<default name="resy" value="1080"/>
+
+<!-- Camera and Rendering Parameters -->
+
+	<integrator type="path" id="elm__0" name="elm__0">
+		<integer name="max_depth" value="12"/>
+	</integrator>
+	<sensor type="perspective" id="elm__7" name="elm__7">
+		<string name="fov_axis" value="x"/>
+		<float name="fov" value="57.773162"/>
+		<float name="principal_point_offset_x" value="0.000000"/>
+		<float name="principal_point_offset_y" value="-0.000000"/>
+		<float name="near_clip" value="0.100000"/>
+		<float name="far_clip" value="1000.000000"/>
+		<transform name="to_world">
+			<rotate x="1" angle="-160.75951238119217"/>
+			<rotate y="1" angle="38.507995238601175"/>
+			<rotate z="1" angle="179.99986840517295"/>
+			<translate value="-34.535950 32.823734 50.322174"/>
+		</transform>
+		<sampler type="independent" name="sampler">
+			<integer name="sample_count" value="$spp"/>
+		</sampler>
+		<film type="hdrfilm" name="film">
+			<integer name="width" value="$resx"/>
+			<integer name="height" value="$resy"/>
+		</film>
+	</sensor>
+
+<!-- Materials -->
+
+	<bsdf type="twosided" id="mat-itu_marble" name="mat-itu_marble">
+		<bsdf type="principled" name="bsdf">
+			<rgb value="0.800000 0.800000 0.800000" name="base_color"/>
+			<float name="spec_tint" value="0.000000"/>
+			<float name="spec_trans" value="0.000000"/>
+			<float name="metallic" value="0.000000"/>
+			<float name="anisotropic" value="0.000000"/>
+			<float name="roughness" value="0.250000"/>
+			<float name="sheen" value="0.000000"/>
+			<float name="sheen_tint" value="0.500000"/>
+			<float name="clearcoat" value="0.000000"/>
+			<float name="clearcoat_gloss" value="0.000900"/>
+			<float name="specular" value="0.500000"/>
+		</bsdf>
+	</bsdf>
+	<bsdf type="twosided" id="mat-itu_concrete" name="mat-itu_concrete">
+		<bsdf type="diffuse" name="bsdf">
+			<rgb value="0.312674 0.800040 0.354053" name="reflectance"/>
+		</bsdf>
+	</bsdf>
+
+<!-- Emitters -->
+
+	<emitter type="point" id="elm__1" name="elm__1">
+		<point name="position" x="-20.0" y="30.0" z="-30.0"/>
+		<rgb value="79.577469 79.577469 79.577469" name="intensity"/>
+	</emitter>
+	<emitter type="point" id="elm__6" name="elm__6">
+		<point name="position" x="30.0" y="30.05000114440918" z="30.0"/>
+		<rgb value="79.577469 79.577469 79.577469" name="intensity"/>
+	</emitter>
+
+<!-- Shapes -->
+
+	<shape type="ply" id="elm__3" name="elm__3">
+		<string name="filename" value="meshes/Floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_marble" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="elm__5" name="elm__5">
+		<string name="filename" value="meshes/Walls.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+
+<!-- Volumes -->
+
+</scene>

@@ -1,0 +1,581 @@
+<scene version="2.1.0">
+
+<!-- Defaults, these can be set via the command line: -Darg=value -->
+
+	<default name="spp" value="4096"/>
+	<default name="resx" value="1920"/>
+	<default name="resy" value="1080"/>
+
+<!-- Camera and Rendering Parameters -->
+
+	<integrator type="path" id="elm__0" name="elm__0">
+		<integer name="max_depth" value="12"/>
+	</integrator>
+	<sensor type="perspective" id="Camera" name="Camera">
+		<string name="fov_axis" value="x"/>
+		<float name="fov" value="39.597755"/>
+		<float name="principal_point_offset_x" value="0.000000"/>
+		<float name="principal_point_offset_y" value="-0.000000"/>
+		<float name="near_clip" value="0.100000"/>
+		<float name="far_clip" value="100.000000"/>
+		<transform name="to_world">
+			<rotate x="1" angle="116.44070980054053"/>
+			<rotate y="1" angle="5.419622430558914e-06"/>
+			<rotate z="1" angle="-133.30805320118378"/>
+			<translate value="7.358891 -6.925791 210.756302"/>
+		</transform>
+		<sampler type="independent" name="sampler">
+			<integer name="sample_count" value="$spp"/>
+		</sampler>
+		<film type="hdrfilm" name="film">
+			<integer name="width" value="$resx"/>
+			<integer name="height" value="$resy"/>
+		</film>
+	</sensor>
+
+<!-- Materials -->
+
+	<bsdf type="twosided" id="mat-itu_wood" name="mat-itu_wood">
+		<bsdf type="principled" name="bsdf">
+			<rgb value="1.000000 1.000000 1.000000" name="base_color"/>
+			<float name="spec_tint" value="0.000000"/>
+			<float name="spec_trans" value="0.000000"/>
+			<float name="metallic" value="0.000000"/>
+			<float name="anisotropic" value="0.000000"/>
+			<float name="roughness" value="1.000000"/>
+			<float name="sheen" value="0.000000"/>
+			<float name="sheen_tint" value="0.500000"/>
+			<float name="clearcoat" value="0.000000"/>
+			<float name="clearcoat_gloss" value="0.000900"/>
+			<float name="specular" value="0.001000"/>
+		</bsdf>
+	</bsdf>
+	<bsdf type="twosided" id="mat-itu_glass" name="mat-itu_glass">
+		<bsdf type="principled" name="bsdf">
+			<rgb value="1.000000 1.000000 1.000000" name="base_color"/>
+			<float name="spec_tint" value="0.000000"/>
+			<float name="spec_trans" value="0.000000"/>
+			<float name="metallic" value="0.000000"/>
+			<float name="anisotropic" value="0.000000"/>
+			<float name="roughness" value="1.000000"/>
+			<float name="sheen" value="0.000000"/>
+			<float name="sheen_tint" value="0.500000"/>
+			<float name="clearcoat" value="0.000000"/>
+			<float name="clearcoat_gloss" value="0.000900"/>
+			<float name="specular" value="0.001000"/>
+		</bsdf>
+	</bsdf>
+	<bsdf type="twosided" id="mat-itu_metal" name="mat-itu_metal">
+		<bsdf type="principled" name="bsdf">
+			<rgb value="1.000000 1.000000 1.000000" name="base_color"/>
+			<float name="spec_tint" value="0.000000"/>
+			<float name="spec_trans" value="0.000000"/>
+			<float name="metallic" value="0.000000"/>
+			<float name="anisotropic" value="0.000000"/>
+			<float name="roughness" value="1.000000"/>
+			<float name="sheen" value="0.000000"/>
+			<float name="sheen_tint" value="0.500000"/>
+			<float name="clearcoat" value="0.000000"/>
+			<float name="clearcoat_gloss" value="0.000900"/>
+			<float name="specular" value="0.001000"/>
+		</bsdf>
+	</bsdf>
+	<bsdf type="twosided" id="mat-itu_marble" name="mat-itu_marble">
+		<bsdf type="principled" name="bsdf">
+			<rgb value="0.800000 0.800000 0.800000" name="base_color"/>
+			<float name="spec_tint" value="0.000000"/>
+			<float name="spec_trans" value="0.000000"/>
+			<float name="metallic" value="0.000000"/>
+			<float name="anisotropic" value="0.000000"/>
+			<float name="roughness" value="0.250000"/>
+			<float name="sheen" value="0.000000"/>
+			<float name="sheen_tint" value="0.500000"/>
+			<float name="clearcoat" value="0.000000"/>
+			<float name="clearcoat_gloss" value="0.000900"/>
+			<float name="specular" value="0.500000"/>
+		</bsdf>
+	</bsdf>
+
+<!-- Emitters -->
+
+	<emitter type="point" id="emit-Light" name="emit-Light">
+		<point name="position" x="4.076245307922363" y="1.0054539442062378" z="211.70184326171875"/>
+		<rgb value="79.577469 79.577469 79.577469" name="intensity"/>
+	</emitter>
+
+<!-- Shapes -->
+
+	<shape type="ply" id="mesh-Cube" name="mesh-Cube">
+		<string name="filename" value="meshes/Cube.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Cube_1" name="mesh-Cube_1">
+		<string name="filename" value="meshes/Cube_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-TV" name="mesh-TV">
+		<string name="filename" value="meshes/TV.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Wand" name="mesh-Wand">
+		<string name="filename" value="meshes/Wand.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Wand_Fenster" name="mesh-Wand_Fenster">
+		<string name="filename" value="meshes/Wand_Fenster.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel" name="mesh-W_rfel">
+		<string name="filename" value="meshes/W_rfel.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_1" name="mesh-W_rfel_1">
+		<string name="filename" value="meshes/W_rfel_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_10" name="mesh-W_rfel_10">
+		<string name="filename" value="meshes/W_rfel_10.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_11" name="mesh-W_rfel_11">
+		<string name="filename" value="meshes/W_rfel_11.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_11_1" name="mesh-W_rfel_11_1">
+		<string name="filename" value="meshes/W_rfel_11_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_1_1" name="mesh-W_rfel_1_1">
+		<string name="filename" value="meshes/W_rfel_1_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_1_2" name="mesh-W_rfel_1_2">
+		<string name="filename" value="meshes/W_rfel_1_2.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_2" name="mesh-W_rfel_2">
+		<string name="filename" value="meshes/W_rfel_2.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_2_1" name="mesh-W_rfel_2_1">
+		<string name="filename" value="meshes/W_rfel_2_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_3" name="mesh-W_rfel_3">
+		<string name="filename" value="meshes/W_rfel_3.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_3_1" name="mesh-W_rfel_3_1">
+		<string name="filename" value="meshes/W_rfel_3_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_4" name="mesh-W_rfel_4">
+		<string name="filename" value="meshes/W_rfel_4.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_4_1" name="mesh-W_rfel_4_1">
+		<string name="filename" value="meshes/W_rfel_4_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_4_2" name="mesh-W_rfel_4_2">
+		<string name="filename" value="meshes/W_rfel_4_2.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_4_3" name="mesh-W_rfel_4_3">
+		<string name="filename" value="meshes/W_rfel_4_3.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5" name="mesh-W_rfel_5">
+		<string name="filename" value="meshes/W_rfel_5.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_0" name="mesh-W_rfel_5_0">
+		<string name="filename" value="meshes/W_rfel_5_0.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_0_1" name="mesh-W_rfel_5_0_1">
+		<string name="filename" value="meshes/W_rfel_5_0_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_1" name="mesh-W_rfel_5_1">
+		<string name="filename" value="meshes/W_rfel_5_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_10" name="mesh-W_rfel_5_10">
+		<string name="filename" value="meshes/W_rfel_5_10.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_10_1" name="mesh-W_rfel_5_10_1">
+		<string name="filename" value="meshes/W_rfel_5_10_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_11" name="mesh-W_rfel_5_11">
+		<string name="filename" value="meshes/W_rfel_5_11.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_11_1" name="mesh-W_rfel_5_11_1">
+		<string name="filename" value="meshes/W_rfel_5_11_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_12" name="mesh-W_rfel_5_12">
+		<string name="filename" value="meshes/W_rfel_5_12.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_12_1" name="mesh-W_rfel_5_12_1">
+		<string name="filename" value="meshes/W_rfel_5_12_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_13" name="mesh-W_rfel_5_13">
+		<string name="filename" value="meshes/W_rfel_5_13.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_13_1" name="mesh-W_rfel_5_13_1">
+		<string name="filename" value="meshes/W_rfel_5_13_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_14" name="mesh-W_rfel_5_14">
+		<string name="filename" value="meshes/W_rfel_5_14.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_14_1" name="mesh-W_rfel_5_14_1">
+		<string name="filename" value="meshes/W_rfel_5_14_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_15" name="mesh-W_rfel_5_15">
+		<string name="filename" value="meshes/W_rfel_5_15.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_15_1" name="mesh-W_rfel_5_15_1">
+		<string name="filename" value="meshes/W_rfel_5_15_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_16" name="mesh-W_rfel_5_16">
+		<string name="filename" value="meshes/W_rfel_5_16.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_16_1" name="mesh-W_rfel_5_16_1">
+		<string name="filename" value="meshes/W_rfel_5_16_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_17" name="mesh-W_rfel_5_17">
+		<string name="filename" value="meshes/W_rfel_5_17.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_17_1" name="mesh-W_rfel_5_17_1">
+		<string name="filename" value="meshes/W_rfel_5_17_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_18" name="mesh-W_rfel_5_18">
+		<string name="filename" value="meshes/W_rfel_5_18.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_18_1" name="mesh-W_rfel_5_18_1">
+		<string name="filename" value="meshes/W_rfel_5_18_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_19" name="mesh-W_rfel_5_19">
+		<string name="filename" value="meshes/W_rfel_5_19.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_19_1" name="mesh-W_rfel_5_19_1">
+		<string name="filename" value="meshes/W_rfel_5_19_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_1_1" name="mesh-W_rfel_5_1_1">
+		<string name="filename" value="meshes/W_rfel_5_1_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_1_2" name="mesh-W_rfel_5_1_2">
+		<string name="filename" value="meshes/W_rfel_5_1_2.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_2" name="mesh-W_rfel_5_2">
+		<string name="filename" value="meshes/W_rfel_5_2.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_20" name="mesh-W_rfel_5_20">
+		<string name="filename" value="meshes/W_rfel_5_20.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_20_1" name="mesh-W_rfel_5_20_1">
+		<string name="filename" value="meshes/W_rfel_5_20_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_21" name="mesh-W_rfel_5_21">
+		<string name="filename" value="meshes/W_rfel_5_21.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_21_1" name="mesh-W_rfel_5_21_1">
+		<string name="filename" value="meshes/W_rfel_5_21_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_22" name="mesh-W_rfel_5_22">
+		<string name="filename" value="meshes/W_rfel_5_22.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_22_1" name="mesh-W_rfel_5_22_1">
+		<string name="filename" value="meshes/W_rfel_5_22_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_23" name="mesh-W_rfel_5_23">
+		<string name="filename" value="meshes/W_rfel_5_23.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_23_1" name="mesh-W_rfel_5_23_1">
+		<string name="filename" value="meshes/W_rfel_5_23_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_24" name="mesh-W_rfel_5_24">
+		<string name="filename" value="meshes/W_rfel_5_24.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_24_1" name="mesh-W_rfel_5_24_1">
+		<string name="filename" value="meshes/W_rfel_5_24_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_25" name="mesh-W_rfel_5_25">
+		<string name="filename" value="meshes/W_rfel_5_25.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_25_1" name="mesh-W_rfel_5_25_1">
+		<string name="filename" value="meshes/W_rfel_5_25_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_26" name="mesh-W_rfel_5_26">
+		<string name="filename" value="meshes/W_rfel_5_26.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_26_1" name="mesh-W_rfel_5_26_1">
+		<string name="filename" value="meshes/W_rfel_5_26_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_2_1" name="mesh-W_rfel_5_2_1">
+		<string name="filename" value="meshes/W_rfel_5_2_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_2_2" name="mesh-W_rfel_5_2_2">
+		<string name="filename" value="meshes/W_rfel_5_2_2.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_3" name="mesh-W_rfel_5_3">
+		<string name="filename" value="meshes/W_rfel_5_3.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_3_1" name="mesh-W_rfel_5_3_1">
+		<string name="filename" value="meshes/W_rfel_5_3_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_4" name="mesh-W_rfel_5_4">
+		<string name="filename" value="meshes/W_rfel_5_4.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_4_1" name="mesh-W_rfel_5_4_1">
+		<string name="filename" value="meshes/W_rfel_5_4_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_5" name="mesh-W_rfel_5_5">
+		<string name="filename" value="meshes/W_rfel_5_5.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_5_1" name="mesh-W_rfel_5_5_1">
+		<string name="filename" value="meshes/W_rfel_5_5_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_6" name="mesh-W_rfel_5_6">
+		<string name="filename" value="meshes/W_rfel_5_6.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_6_1" name="mesh-W_rfel_5_6_1">
+		<string name="filename" value="meshes/W_rfel_5_6_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_7" name="mesh-W_rfel_5_7">
+		<string name="filename" value="meshes/W_rfel_5_7.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_7_1" name="mesh-W_rfel_5_7_1">
+		<string name="filename" value="meshes/W_rfel_5_7_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_8" name="mesh-W_rfel_5_8">
+		<string name="filename" value="meshes/W_rfel_5_8.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_8_1" name="mesh-W_rfel_5_8_1">
+		<string name="filename" value="meshes/W_rfel_5_8_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_9" name="mesh-W_rfel_5_9">
+		<string name="filename" value="meshes/W_rfel_5_9.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_5_9_1" name="mesh-W_rfel_5_9_1">
+		<string name="filename" value="meshes/W_rfel_5_9_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_6" name="mesh-W_rfel_6">
+		<string name="filename" value="meshes/W_rfel_6.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_6_1" name="mesh-W_rfel_6_1">
+		<string name="filename" value="meshes/W_rfel_6_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_6_2" name="mesh-W_rfel_6_2">
+		<string name="filename" value="meshes/W_rfel_6_2.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_7" name="mesh-W_rfel_7">
+		<string name="filename" value="meshes/W_rfel_7.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_8" name="mesh-W_rfel_8">
+		<string name="filename" value="meshes/W_rfel_8.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_9" name="mesh-W_rfel_9">
+		<string name="filename" value="meshes/W_rfel_9.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-W_rfel_9_1" name="mesh-W_rfel_9_1">
+		<string name="filename" value="meshes/W_rfel_9_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Zylinder_1" name="mesh-Zylinder_1">
+		<string name="filename" value="meshes/Zylinder_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Zylinder_2" name="mesh-Zylinder_2">
+		<string name="filename" value="meshes/Zylinder_2.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Zylinder_3" name="mesh-Zylinder_3">
+		<string name="filename" value="meshes/Zylinder_3.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-верх1_левый" name="mesh-верх1_левый">
+		<string name="filename" value="meshes/верх1_левый.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-верх_правый" name="mesh-верх_правый">
+		<string name="filename" value="meshes/верх_правый.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-держатель_стекла_1" name="mesh-держатель_стекла_1">
+		<string name="filename" value="meshes/держатель_стекла_1.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-низ_стола" name="mesh-низ_стола">
+		<string name="filename" value="meshes/низ_стола.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-ножки" name="mesh-ножки">
+		<string name="filename" value="meshes/ножки.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-стекло" name="mesh-стекло">
+		<string name="filename" value="meshes/стекло.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Wand_001" name="mesh-Wand_001">
+		<string name="filename" value="meshes/Wand_001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_marble" name="bsdf"/>
+	</shape>
+
+<!-- Volumes -->
+
+</scene>
